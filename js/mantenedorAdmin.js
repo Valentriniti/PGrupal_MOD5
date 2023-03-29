@@ -1,21 +1,34 @@
 import {Producto} from '/js/Producto.js';
 import {Mantenedor} from '/js/Mantenedor.js';
+import {validarModal} from '/js/modals.js';
 
+//Variables globales
 const mantenedor = new Mantenedor('https://slifer.bsite.net/td-producto');
 const tBody = document.querySelector('#table-body');
-const tFila = document.querySelectorAll('.fila');
+let ProductosCachureando = [];
+
+    //Variables del modal modificar
+    let inputId = document.getElementById("id-obj");
+    let inputNombre = document.getElementById("nombre-obj");
+    let inputPrecio = document.getElementById("precio-obj");
+    let inputLink = document.getElementById("link-obj");
+    let inputStock = document.getElementById("stock-obj");
+    let inputEtiqueta = document.getElementById("etiqueta-obj");
+    let inputDescripcion = document.getElementById("descripcion-obj");
+    let inputIdCategoria = document.getElementById("idCategoria-obj");
+    let inputIdSucursal = document.getElementById("idSucursal-obj");
+    let btnGuardar = document.querySelector('#guardar');
 
 
 function Eventos(){
 
     document.addEventListener('DOMContentLoaded', async ()=>{
-        let ProductosCachureando;
-        ProductosCachureando = await mantenedor.producto();
-        ProductosCachureando = ProductosCachureando.filter(element =>  element.idSucursal == 6);
-        //llamada funcion LlenarHtml crea los registros en la tabla
-        llenarHtml(ProductosCachureando);
+     
+        cargarDatos();
+
     });
 
+    //Evento selecciona la fila correspondiente que se quiere modificar y rellena el modal con la informacion
     tBody.addEventListener('click', (e)=>{
         let seleccionado;
 
@@ -24,14 +37,31 @@ function Eventos(){
         seleccionado = e.target.parentElement.parentElement;
         
         rellenarModal(seleccionado);
+
         }
     })
-    // tBody.addEventListener('click', ()=>{
+    //Envio de informacion para modificar
+    btnGuardar.addEventListener('click', async ()=>{
+
+        let respuesta;
+
+        respuesta = validarModal();
         
-    //     if(e.target.classList.contains('btn-borrar')){
-    //         console.log('haciendo click en el boton borrar');
-    //     }
-    // })
+        if(respuesta ===true){
+
+            let producto = new Producto(inputId.value,inputNombre.value,inputPrecio.value,
+                inputLink.value,inputStock.value, inputEtiqueta.value, inputDescripcion.value, 
+                inputIdCategoria.value,inputIdSucursal.value );
+
+            await mantenedor.modificarProducto(producto);
+
+            cargarDatos();
+            alert('Registro modificado exitosamente');
+        }
+
+    })
+
+
 }
 
 Eventos();
@@ -129,26 +159,29 @@ function rellenarModal(seleccionado){
     let stockTabla = seleccionado.querySelector('.stock').textContent;
     let etiquetaTabla = seleccionado.querySelector('.etiqueta').textContent;
     let descripcionTabla = seleccionado.querySelector('.descripcion').textContent;
-    let idCategoriaTabla = seleccionado.querySelector('.IdCategoria').textContent;
-    let idSucursalTabla = seleccionado.querySelector('.IdSucursal').textContent;
-
-    let inputId = document.getElementById("id-obj").value =idTabla;
-    let inputNombre = document.getElementById("nombre-obj").value = nombreTabla;
-    let inputPrecio = document.getElementById("precio-obj").value = precioTabla;
-    let inputLink = document.getElementById("link-obj").value = linkTabla;
-    let inputStock = document.getElementById("stock-obj").value = stockTabla;
-    let inputEtiqueta = document.getElementById("etiqueta-obj").value = etiquetaTabla;
-    let inputDescripcion = document.getElementById("descripcion-obj").value = descripcionTabla;
-    let inputIdCategoria = document.getElementById("idCategoria-obj").value = idCategoriaTabla;
-    let inputIdSucursal = document.getElementById("idSucursal-obj").value = idSucursalTabla;
+    let idCategoriaTabla = seleccionado.querySelector('.idCategoria').textContent;
+    let idSucursalTabla = seleccionado.querySelector('.idSucursal').textContent;
     
+    //Asignacion de valores al formulario de modal
+    inputId.value = idTabla;
+    inputNombre.value = nombreTabla;
+    inputPrecio.value = precioTabla;
+    inputLink.value = linkTabla;
+    inputStock.value = stockTabla;
+    inputEtiqueta.value = etiquetaTabla;
+    inputDescripcion.value = descripcionTabla;
+    inputIdCategoria.value = idCategoriaTabla;
+    inputIdSucursal.value = idSucursalTabla;
     console.log(idTabla);
 
 }
 
 function llenarHtml(arr){
     
+    limpiarHtml(tBody);
+
     arr.forEach(element => {
+
      //Creación de una fila (tr)
      let tr = document.createElement('tr');
      //Creación de una celda de datos (td) para el id
@@ -172,9 +205,7 @@ function llenarHtml(arr){
      //Creación de una celda de datos (td) para el link
      let tdLink = document.createElement('td');
      tdLink.classList.add('link');
-     let link = document.createElement('link')
-     link.src= element.link;
-     tdLink.appendChild(link);
+     tdLink.textContent= element.link;
      tr.appendChild(tdLink);
 
      // Creación de una celda de datos (td) para el stock
@@ -206,8 +237,51 @@ function llenarHtml(arr){
      tdIdSucursal.classList.add('idSucursal');
      tdIdSucursal.textContent = element.idSucursal;
      tr.appendChild(tdIdSucursal);
+     
+    //creacion de los botones
+        //boton modificar
+        let tdBotonMod = document.createElement('td');
+        let botonMod = document.createElement('button');
+        botonMod.setAttribute('type', 'button');
+        botonMod.setAttribute('data-bs-toggle', 'modal');
+        botonMod.setAttribute('data-bs-target', '#modifyModal');
+        botonMod.textContent = 'Modificar'; //aqui colocar el unicode entre las comillas Modificar
+        botonMod.classList.add('btn-mod','btn', 'btn-primary');
+        tdBotonMod.appendChild(botonMod);
+        tr.appendChild(tdBotonMod);
+        //boton Eliminar
+        let tdBotonBorr = document.createElement('td');
+        let botonBorr = document.createElement('button');
+        botonBorr.setAttribute('type', 'button');
+        botonBorr.setAttribute('data-bs-toggle', 'modal');
+        botonBorr.setAttribute('data-bs-target', '#deleteModal');
+        botonBorr.textContent = 'Borrar';//aqui colocar el unicode entre las comillas Borrar
+        botonBorr.classList.add('btn-borrar','btn', 'btn-danger');
+        tdBotonBorr.appendChild(botonBorr);
+        tr.appendChild(tdBotonBorr);
+
+
 
      //Agregar la fila completa a la tabla (tbody)
      tBody.appendChild(tr);
     });
+}
+
+function limpiarHtml(padre){
+
+   while(padre.firstChild){
+
+    padre.firstChild.remove(padre.firstChild);
+
+   }
+
+}
+
+async function cargarDatos(){
+
+    ProductosCachureando = await mantenedor.producto();
+    ProductosCachureando = ProductosCachureando.filter(element =>  element.idSucursal == 6);
+    //llamada funcion LlenarHtml crea los registros en la tabla
+    llenarHtml(ProductosCachureando);
+
 }
