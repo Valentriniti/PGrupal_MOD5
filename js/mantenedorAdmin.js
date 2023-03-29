@@ -25,7 +25,6 @@ function Eventos(){
         seleccionado = e.target.parentElement.parentElement;
         
         rellenarModal(seleccionado);
-
         }
     })
     // tBody.addEventListener('click', ()=>{
@@ -126,8 +125,23 @@ function rellenarModal(seleccionado){
 
     let idTabla = seleccionado.querySelector('.id').textContent;
     let nombreTabla = seleccionado.querySelector('.nombre').textContent;
+    let precioTabla = seleccionado.querySelector('.precio').textContent;
+    let linkTabla = seleccionado.querySelector('.link').textContent;
+    let stockTabla = seleccionado.querySelector('.stock').textContent;
+    let etiquetaTabla = seleccionado.querySelector('.etiqueta').textContent;
+    let descripcionTabla = seleccionado.querySelector('.descripcion').textContent;
+    let idCategoriaTabla = seleccionado.querySelector('.idCategoria').textContent;
+    let idSucursalTabla = seleccionado.querySelector('.idSucursal').textContent;
+
     let inputId = document.getElementById("id-obj").value =idTabla;
     let inputNombre = document.getElementById("nombre-obj").value = nombreTabla;
+    let inputPrecio = document.getElementById("precio-obj").value = precioTabla;
+    let inputLink = document.getElementById("link-obj").value = linkTabla;
+    let inputStock = document.getElementById("stock-obj").value = stockTabla;
+    let inputEtiqueta = document.getElementById("etiqueta-obj").value = etiquetaTabla;
+    let inputDescripcion = document.getElementById("descripcion-obj").value = descripcionTabla;
+    let inputIdCategoria = document.getElementById("idCategoria-obj").value = idCategoriaTabla;
+    let inputIdSucursal = document.getElementById("idSucursal-obj").value = idSucursalTabla;
     
     console.log(idTabla);
 
@@ -201,7 +215,7 @@ function llenarHtml(arr){
         botonMod.setAttribute('type', 'button');
         botonMod.setAttribute('data-bs-toggle', 'modal');
         botonMod.setAttribute('data-bs-target', '#modifyModal');
-        botonMod.textContent = 'Modificar';
+        botonMod.textContent = 'Modificar'; //aqui colocar el unicode entre las comillas Modificar
         botonMod.classList.add('btn-mod','btn', 'btn-primary');
         tdBotonMod.appendChild(botonMod);
         tr.appendChild(tdBotonMod);
@@ -211,7 +225,7 @@ function llenarHtml(arr){
         botonBorr.setAttribute('type', 'button');
         botonBorr.setAttribute('data-bs-toggle', 'modal');
         botonBorr.setAttribute('data-bs-target', '#deleteModal');
-        botonBorr.textContent = 'Borrar';
+        botonBorr.textContent = 'Borrar';//aqui colocar el unicode entre las comillas Borrar
         botonBorr.classList.add('btn-borrar','btn', 'btn-danger');
         tdBotonBorr.appendChild(botonBorr);
         tr.appendChild(tdBotonBorr);
