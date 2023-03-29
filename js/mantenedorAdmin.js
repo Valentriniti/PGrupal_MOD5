@@ -1,5 +1,6 @@
 import {Producto} from '/js/Producto.js';
 import {Mantenedor} from '/js/Mantenedor.js';
+//import {validarModal} from '/js/modals.js';
 
 const mantenedor = new Mantenedor('https://slifer.bsite.net/td-producto');
 const tBody = document.querySelector('#table-body');
@@ -129,8 +130,8 @@ function rellenarModal(seleccionado){
     let stockTabla = seleccionado.querySelector('.stock').textContent;
     let etiquetaTabla = seleccionado.querySelector('.etiqueta').textContent;
     let descripcionTabla = seleccionado.querySelector('.descripcion').textContent;
-    let idCategoriaTabla = seleccionado.querySelector('.IdCategoria').textContent;
-    let idSucursalTabla = seleccionado.querySelector('.IdSucursal').textContent;
+    let idCategoriaTabla = seleccionado.querySelector('.idCategoria').textContent;
+    let idSucursalTabla = seleccionado.querySelector('.idSucursal').textContent;
 
     let inputId = document.getElementById("id-obj").value =idTabla;
     let inputNombre = document.getElementById("nombre-obj").value = nombreTabla;
@@ -206,6 +207,30 @@ function llenarHtml(arr){
      tdIdSucursal.classList.add('idSucursal');
      tdIdSucursal.textContent = element.idSucursal;
      tr.appendChild(tdIdSucursal);
+     
+    //creacion de los botones
+        //boton modificar
+        let tdBotonMod = document.createElement('td');
+        let botonMod = document.createElement('button');
+        botonMod.setAttribute('type', 'button');
+        botonMod.setAttribute('data-bs-toggle', 'modal');
+        botonMod.setAttribute('data-bs-target', '#modifyModal');
+        botonMod.textContent = 'Modificar'; //aqui colocar el unicode entre las comillas Modificar
+        botonMod.classList.add('btn-mod','btn', 'btn-primary');
+        tdBotonMod.appendChild(botonMod);
+        tr.appendChild(tdBotonMod);
+        //boton Eliminar
+        let tdBotonBorr = document.createElement('td');
+        let botonBorr = document.createElement('button');
+        botonBorr.setAttribute('type', 'button');
+        botonBorr.setAttribute('data-bs-toggle', 'modal');
+        botonBorr.setAttribute('data-bs-target', '#deleteModal');
+        botonBorr.textContent = 'Borrar';//aqui colocar el unicode entre las comillas Borrar
+        botonBorr.classList.add('btn-borrar','btn', 'btn-danger');
+        tdBotonBorr.appendChild(botonBorr);
+        tr.appendChild(tdBotonBorr);
+
+
 
      //Agregar la fila completa a la tabla (tbody)
      tBody.appendChild(tr);

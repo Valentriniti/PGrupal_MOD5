@@ -55,6 +55,7 @@ function validarModal() {
         }
          else {
           
+          return true;
         }
 }
 
