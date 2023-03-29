@@ -191,6 +191,26 @@ function llenarHtml(arr){
      tdIdSucursal.classList.add('idSucursal');
      tdIdSucursal.textContent = element.idSucursal;
      tr.appendChild(tdIdSucursal);
+     
+    //creacion de los botones
+        //boton modificar
+        let tdBotonMod = document.createElement('td');
+        let botonMod = document.createElement('button');
+        botonMod.setAttribute('type', 'button');
+        botonMod.textContent = 'Modificar';
+        botonMod.classList.add('btn-mod','btn', 'btn-primary');
+        tdBotonMod.appendChild(botonMod);
+        tr.appendChild(tdBotonMod);
+        //boton Eliminar
+        let tdBotonBorr = document.createElement('td');
+        let botonBorr = document.createElement('button');
+        botonBorr.setAttribute('type', 'button');
+        botonBorr.textContent = 'Borrar';
+        botonBorr.classList.add('btn-mod','btn', 'btn-danger');
+        tdBotonBorr.appendChild(botonBorr);
+        tr.appendChild(tdBotonBorr);
+
+
 
      //Agregar la fila completa a la tabla (tbody)
      tBody.appendChild(tr);
