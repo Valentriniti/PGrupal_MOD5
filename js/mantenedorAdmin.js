@@ -1,6 +1,6 @@
 import {Producto} from '/js/Producto.js';
 import {Mantenedor} from '/js/Mantenedor.js';
-import {validarModal} from '/js/modals.js';
+import {validarModal, validarModalAdd} from '/js/modals.js';
 
 //Variables globales
 const mantenedor = new Mantenedor('https://slifer.bsite.net/td-producto');
@@ -8,17 +8,27 @@ const tBody = document.querySelector('#table-body');
 let ProductosCachureando = [];
 
     //Variables del modal modificar
-    let inputId = document.getElementById("id-obj");
-    let inputNombre = document.getElementById("nombre-obj");
-    let inputPrecio = document.getElementById("precio-obj");
-    let inputLink = document.getElementById("link-obj");
-    let inputStock = document.getElementById("stock-obj");
-    let inputEtiqueta = document.getElementById("etiqueta-obj");
-    let inputDescripcion = document.getElementById("descripcion-obj");
-    let inputIdCategoria = document.getElementById("idCategoria-obj");
-    let inputIdSucursal = document.getElementById("idSucursal-obj");
-    let btnGuardar = document.querySelector('#guardar');
-
+    const inputId = document.getElementById("id-obj");
+    const inputNombre = document.getElementById("nombre-obj");
+    const inputPrecio = document.getElementById("precio-obj");
+    const inputLink = document.getElementById("link-obj");
+    const inputStock = document.getElementById("stock-obj");
+    const inputEtiqueta = document.getElementById("etiqueta-obj");
+    const inputDescripcion = document.getElementById("descripcion-obj");
+    const inputIdCategoria = document.getElementById("idCategoria-obj");
+    const inputIdSucursal = document.getElementById("idSucursal-obj");
+    const btnGuardar = document.querySelector('#guardar');
+    //Variables del modal Agregar
+    const inputIdAdd = document.getElementById("id-add");
+    const inputNombreAdd = document.getElementById("nombre-add");
+    const inputPrecioAdd = document.getElementById("precio-add");
+    const inputLinkAdd = document.getElementById("link-add");
+    const inputStockAdd = document.getElementById("stock-add");
+    const inputEtiquetaAdd = document.getElementById("etiqueta-add");
+    const inputDescripcionAdd = document.getElementById("descripcion-add");
+    const inputIdCategoriaAdd = document.getElementById("idCategoria-add");
+    const inputIdSucursalAdd = document.getElementById("idSucursal-add");
+    const btnAgregar = document.querySelector('#nuevo');
 
 function Eventos(){
 
@@ -60,23 +70,35 @@ function Eventos(){
         }
 
     });
-    
 
+    //Envio de informacion para agregar
+    btnAgregar.addEventListener('click', async ()=>{
+
+        let respuesta;
+
+        respuesta = validarModalAdd();
+
+        if(respuesta ===true){
+
+            let producto = new Producto(inputIdAdd.value,inputNombreAdd.value,inputPrecioAdd.value,
+                inputLinkAdd.value,inputStockAdd.value, inputEtiquetaAdd.value, inputDescripcionAdd.value, 
+                inputIdCategoriaAdd.value,inputIdSucursalAdd.value );
+
+            await mantenedor.agregarProducto(producto);
+
+            cargarDatos();
+            alert('Registro agregado exitosamente');
+        }
+        
+    });
 }
 
 Eventos();
 
 /*
 
-
 //Eventos
 function Eventos(){
-
-    btnAgregar.addEventListener('click', ()=>{
-        
-        mantenedor1.agregarProducto(producto1);
-
-    });
 
     btnBorrar.addEventListener('click', ()=>{
 
@@ -85,13 +107,11 @@ function Eventos(){
 
     });
 
-
 }
 */
 
 
 //Funciones
-
 
 function rellenarModal(seleccionado){
 
