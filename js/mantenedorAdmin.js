@@ -9,13 +9,10 @@ function Eventos(){
     document.addEventListener('DOMContentLoaded', async ()=>{
         let ProductosCachureando;
         ProductosCachureando = await mantenedor.producto();
-
         ProductosCachureando = ProductosCachureando.filter(element =>  element.idSucursal == 6);
-        //Creacion de elementos
+        //llamada funcion LlenarHtml crea los registros en la tabla
         llenarHtml(ProductosCachureando);
-
     });
-
 
 }
 
