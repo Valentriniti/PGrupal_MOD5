@@ -134,14 +134,65 @@ function rellenarModal(seleccionado){
 function llenarHtml(arr){
     
     arr.forEach(element => {
-     //Creacion tr
+     //Creación de una fila (tr)
      let tr = document.createElement('tr');
-     //creacion TD
+     //Creación de una celda de datos (td) para el id
      let tdId = document.createElement('td');
      tdId.classList.add('id');
      tdId.textContent = element.id;
      tr.appendChild(tdId);
+
+     //Creación de una celda de datos (td) para el nombre
+     let tdNombre = document.createElement('td');
+     tdNombre.classList.add('nombre');
+     tdNombre.textContent = element.nombre;
+     tr.appendChild(tdNombre);
+     
+     //Creación de una celda de datos (td) para el precio
+     let tdPrecio = document.createElement('td');
+     tdPrecio.classList.add('precio');
+     tdPrecio.textContent = element.precio;
+     tr.appendChild(tdPrecio);
+
+     //Creación de una celda de datos (td) para el link
+     let tdLink = document.createElement('td');
+     tdLink.classList.add('link');
+     let link = document.createElement('link')
+     link.src= element.link;
+     tdLink.appendChild(link);
+     tr.appendChild(tdLink);
+
+     // Creación de una celda de datos (td) para el stock
+     let tdStock = document.createElement('td');
+     tdStock.classList.add('stock');
+     tdStock.textContent = element.stock;
+     tr.appendChild(tdStock);
+
+     // Creación de una celda de datos (td) para la etiqueta
+     let tdEtiqueta = document.createElement('td');
+     tdEtiqueta.classList.add('etiqueta');
+     tdEtiqueta.textContent = element.etiqueta;
+     tr.appendChild(tdEtiqueta);
+
+     // Creación de una celda de datos (td) para la descripcion
+     let tdDescripcion = document.createElement('td');
+     tdDescripcion.classList.add('descripcion');
+     tdDescripcion.textContent = element.descripcion;
+     tr.appendChild(tdDescripcion);
+
+     // Creación de una celda de datos (td) para id-categoria 
+     let tdIdCategoria = document.createElement('td');
+     tdIdCategoria.classList.add('idCategoria');
+     tdIdCategoria.textContent = element.idCategoria;
+     tr.appendChild(tdIdCategoria);
+
+     // Creación de una celda de datos (td) para id-sucursal
+     let tdIdSucursal = document.createElement('td');
+     tdIdSucursal.classList.add('idSucursal');
+     tdIdSucursal.textContent = element.idSucursal;
+     tr.appendChild(tdIdSucursal);
+
+     //Agregar la fila completa a la tabla (tbody)
      tBody.appendChild(tr);
     });
-
 }
