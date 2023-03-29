@@ -54,10 +54,9 @@ function validarModal() {
           alert('Id Sucursal debe contener números solamente');
         }
          else {
-
+          
         }
 }
 
 buttonGuardar.addEventListener('click', validarModal)
 
-vali
