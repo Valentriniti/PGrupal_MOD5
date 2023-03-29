@@ -13,6 +13,17 @@ let inputIdSucursal = document.getElementById("idSucursal-obj");
 const pAlert = document.getElementById("alert");
 const buttonGuardar = document.getElementById("guardar");
 
+
+const inputIdAdd = document.getElementById("id-add");
+const inputNombreAdd = document.getElementById("nombre-add");
+const inputPrecioAdd = document.getElementById("precio-add");
+const inputLinkAdd = document.getElementById("link-add");
+const inputStockAdd = document.getElementById("stock-add");
+const inputEtiquetaAdd = document.getElementById("etiqueta-add");
+const inputDescripcionAdd = document.getElementById("descripcion-add");
+const inputIdCategoriaAdd = document.getElementById("idCategoria-add");
+const inputIdSucursalAdd = document.getElementById("idSucursal-add");
+
 export function validarModal() {
         if (!inputId.value){
 /*           pAlert.textContent = 'debes ingresar Id del producto'; */
@@ -59,5 +70,52 @@ export function validarModal() {
         }
 }
 
+
+
+export function validarModalAdd() {
+  if (!inputIdAdd.value){
+/*           pAlert.textContent = 'debes ingresar Id del producto'; */
+  alert('debes ingresar Id del producto'); 
+      return false;
+  }else if (!regExNumber.test(inputIdAdd.value)) {
+    alert('Id debe contener números solamente');
+    return false;
+  } else if (!inputNombreAdd.value) {
+    alert('debes ingresar nombre del producto');
+    return false;
+  } else if (!inputPrecioAdd) {
+    alert('debes ingresar precio del producto');
+    return false;
+  } else if (!regExNumber.test(inputPrecioAdd.value)) {
+    alert('Precio debe contener números solamente');
+    return false;
+  } else if (!inputLinkAdd.value) {
+    alert('debes ingresar link del producto');
+    return false;
+  } else if (!inputStockAdd.value) {
+    alert('debes ingresar stock del producto');
+    return false;
+  } else if (!regExNumber.test(inputStockAdd.value)) {
+    alert('Stock debe contener números solamente');
+    return false;
+  } else if (!inputEtiquetaAdd.value) {
+    alert('debes ingresar etiqueta del producto');
+    return false;
+  } else if (!inputDescripcionAdd.value) {
+    alert('debes ingresar una descripción del producto');
+  } else if (!inputIdCategoriaAdd.value) {
+    alert('debes ingresar Id Categoría del producto');
+  }else if (!regExNumber.test(inputIdCategoriaAdd.value)) {
+    alert('Id Categoría debe contener números solamente');
+  } else if (!inputIdSucursalAdd.value) {
+    alert('debes ingresar Id Sucursal del producto');
+  }else if (!regExNumber.test(inputIdSucursalAdd.value)) {
+    alert('Id Sucursal debe contener números solamente');
+  }
+   else {
+    
+    return true;
+  }
+}
 //buttonGuardar.addEventListener('click', validarModal)
 

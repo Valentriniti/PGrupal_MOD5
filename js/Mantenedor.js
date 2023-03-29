@@ -69,7 +69,6 @@ export class Mantenedor {
     //Modificar productos
     async modificarProducto(obj){
         const{id,nombre,precio,link,stock,etiqueta,descripcion,idCategoria,idSucursal} = obj;
-        console.log(id+" "+nombre+" "+precio+" "+link+" "+stock+" "+etiqueta+" "+descripcion+" "+idCategoria+" "+idSucursal)
         
         try{
             const respuesta = await fetch(this.url,{ 
