@@ -1,5 +1,6 @@
 import {Producto} from '/js/Producto.js';
 import {Mantenedor} from '/js/Mantenedor.js';
+//import {validarModal} from '/js/modals.js';
 
 const mantenedor = new Mantenedor('https://slifer.bsite.net/td-producto');
 const tBody = document.querySelector('#table-body');
@@ -24,6 +25,7 @@ function Eventos(){
         seleccionado = e.target.parentElement.parentElement;
         
         rellenarModal(seleccionado);
+
         }
     })
     // tBody.addEventListener('click', ()=>{
@@ -197,6 +199,8 @@ function llenarHtml(arr){
         let tdBotonMod = document.createElement('td');
         let botonMod = document.createElement('button');
         botonMod.setAttribute('type', 'button');
+        botonMod.setAttribute('data-bs-toggle', 'modal');
+        botonMod.setAttribute('data-bs-target', '#modifyModal');
         botonMod.textContent = 'Modificar';
         botonMod.classList.add('btn-mod','btn', 'btn-primary');
         tdBotonMod.appendChild(botonMod);
@@ -205,8 +209,10 @@ function llenarHtml(arr){
         let tdBotonBorr = document.createElement('td');
         let botonBorr = document.createElement('button');
         botonBorr.setAttribute('type', 'button');
+        botonBorr.setAttribute('data-bs-toggle', 'modal');
+        botonBorr.setAttribute('data-bs-target', '#deleteModal');
         botonBorr.textContent = 'Borrar';
-        botonBorr.classList.add('btn-mod','btn', 'btn-danger');
+        botonBorr.classList.add('btn-borrar','btn', 'btn-danger');
         tdBotonBorr.appendChild(botonBorr);
         tr.appendChild(tdBotonBorr);
 
