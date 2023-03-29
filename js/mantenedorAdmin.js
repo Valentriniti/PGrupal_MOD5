@@ -2,6 +2,8 @@ import {Producto} from '/js/Producto.js';
 import {Mantenedor} from '/js/Mantenedor.js';
 
 const mantenedor = new Mantenedor('https://slifer.bsite.net/td-producto');
+const tBody = document.querySelector('#table-body');
+const tFila = document.querySelectorAll('.fila');
 
 
 function Eventos(){
@@ -14,6 +16,22 @@ function Eventos(){
         llenarHtml(ProductosCachureando);
     });
 
+    tBody.addEventListener('click', (e)=>{
+        let seleccionado;
+
+        if(e.target.classList.contains('btn-mod')){
+      
+        seleccionado = e.target.parentElement.parentElement;
+        
+        rellenarModal(seleccionado);
+        }
+    })
+    // tBody.addEventListener('click', ()=>{
+        
+    //     if(e.target.classList.contains('btn-borrar')){
+    //         console.log('haciendo click en el boton borrar');
+    //     }
+    // })
 }
 
 Eventos();
@@ -101,9 +119,19 @@ Eventos();
 
 //Funciones
 
-function llenarHtml(arr){
 
-    const tBody = document.querySelector('#table-body');
+function rellenarModal(seleccionado){
+
+    let idTabla = seleccionado.querySelector('.id').textContent;
+    let nombreTabla = seleccionado.querySelector('.nombre').textContent;
+    let inputId = document.getElementById("id-obj").value =idTabla;
+    let inputNombre = document.getElementById("nombre-obj").value = nombreTabla;
+    
+    console.log(idTabla);
+
+}
+
+function llenarHtml(arr){
     
     arr.forEach(element => {
      //Creacion tr
