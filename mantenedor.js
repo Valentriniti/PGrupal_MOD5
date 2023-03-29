@@ -1,6 +1,4 @@
 const regExNumber = /^\d+$/;
-/* let textRegex = ^(.|\s)*[a-zA-Z]+(.|\s)*$; */
-
 let inputId = document.getElementById("id-obj");
 let inputNombre = document.getElementById("nombre-obj");
 let inputPrecio = document.getElementById("precio-obj");
@@ -60,4 +58,4 @@ function validarModal() {
 
 buttonGuardar.addEventListener('click', validarModal)
 
-vali
+

@@ -31,15 +31,15 @@
         </thead>
         <tbody>
           <tr>
-            <td id="id">2</td>
-            <td id="nombre">Lámpara Mesa</td>
-            <td id="precio">25000</td>
-            <td id="link">./img/p02.jpg</td>
-            <td id="stock">10</td>
-            <td id="etiqueta">lámpara</td>
-            <td id="descripcion">Lámpara metal negro mate. Dimensiones 45 x 20 x 20 cm.</td>
-            <td id="id-caregoria">29</td>
-            <td id="id-sucursal">6</td>
+            <td class="id">2</td>
+            <td class="nombre">Lámpara Mesa</td>
+            <td class="precio">25000</td>
+            <td class="link">./img/p02.jpg</td>
+            <td class="stock">10</td>
+            <td class="etiqueta">lámpara</td>
+            <td class="descripcion">Lámpara metal negro mate. Dimensiones 45 x 20 x 20 cm.</td>
+            <td class="id-caregoria">29</td>
+            <td class="id-sucursal">6</td>
             <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal"><img src="./img/pen.svg" alt=""></button></td>
             <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><img src="./img/trash.svg" alt=""></button></td>
           </tr>
@@ -56,11 +56,60 @@
             <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modifyModal"><img src="./img/pen.svg" alt=""></button></td>
             <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"><img src="./img/trash.svg" alt=""></button></td>
           </tr>
-          
-
         </tbody>
       </table>
+
+      <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newModal">Nuevo Producto</button>
     </div>
+
+<!-- Modal nuevo producto-->
+<div class="modal fade" tabindex="-1" id="newModal">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">nuevo Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form class="form">
+
+          <label for="id-obj" class="form-label">Id producto</label>
+          <input id="id-obj" class="form-control mb-3" name="id" type="text" class="form-control" >
+          
+          <label for="nombre-obj" class="form-label">Nombre</label>
+          <input id="nombre-obj" class="form-control mb-3" name="nombre" type="text" class="form-control" >
+
+          <label for="precio-obj" class="form-label">Precio</label>
+          <input id="precio-obj" class="form-control mb-3" name="precio" type="text" class="form-control" >
+
+          <label for="link-obj" class="form-label">Link Imagen</label>
+          <input id="link-obj" class="form-control mb-3" name="link" type="text" class="form-control" >
+
+          <label for="stock-obj" class="form-label">Stock</label>
+          <input id="stock-obj" class="form-control mb-3" name="stock" type="text" class="form-control" >
+
+          <label for="etiqueta-obj" class="form-label">Etiqueta</label>
+          <input id="etiqueta-obj" class="form-control mb-3" name="etiqueta" type="text" class="form-control">
+
+          <label for="descripcion-obj" class="form-label">Descripción</label>
+          <input id="descripcion-obj" class="form-control mb-3" name="descripcion" type="text" class="form-control">
+
+          <label for="idCategoria-obj" class="form-label">Id Categoría</label>
+          <input id="idCategoria-obj" class="form-control mb-3" name="idCategoria" type="text" class="form-control">
+
+          <label for="idSucursal-obj" class="form-label">Id Sucursal</label>
+          <input id="idSucursal-obj" class="form-control mb-3" name="idSucursal" type="text" class="form-control">
+
+        </form> 
+      </div>
+      <div class="modal-footer">
+        <p id="alert"></p>
+        <button type="button" class="btn btn-success" id="guardar">Crear Nuevo Producto</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal modificar -->
     <div class="modal fade" tabindex="-1" id="modifyModal">
@@ -121,13 +170,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Ingresa el id del producto que quieras eliminar</p>
-              <form class="form">
-
-                <label for="id-obj" class="form-label">Id producto</label>
-                <input id="id-obj" class="form-control mb-3" name="id" type="text" class="form-control" placeholder="1">
-
-              </form> 
+                <p>¿Estás seguro de que quieres eliminar este producto del inventario?</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger">Borrar de inventario</button>
