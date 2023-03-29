@@ -107,6 +107,58 @@
           </div>
         </div>
       </div>
+
+
+<!-- Modal agregar producto -->
+<div class="modal fade" tabindex="-1" id="newModal">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nuevo Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form class="form">
+
+          <label for="id-obj" class="form-label">Id producto</label>
+          <input id="id-obj" class="form-control mb-3" name="id" type="text" class="form-control">
+          
+          <label for="nombre-obj" class="form-label">Nombre</label>
+          <input id="nombre-obj" class="form-control mb-3" name="nombre" type="text" class="form-control">
+
+          <label for="precio-obj" class="form-label">Precio</label>
+          <input id="precio-obj" class="form-control mb-3" name="precio" type="text" class="form-control">
+
+          <label for="link-obj" class="form-label">Link Imagen</label>
+          <input id="link-obj" class="form-control mb-3" name="link" type="text" class="form-control">
+
+          <label for="stock-obj" class="form-label">Stock</label>
+          <input id="stock-obj" class="form-control mb-3" name="stock" type="text" class="form-control">
+
+          <label for="etiqueta-obj" class="form-label">Etiqueta</label>
+          <input id="etiqueta-obj" class="form-control mb-3" name="etiqueta" type="text" class="form-control">
+
+          <label for="descripcion-obj" class="form-label">Descripción</label>
+          <input id="descripcion-obj" class="form-control mb-3" name="descripcion" type="text" class="form-control">
+
+          <label for="idCategoria-obj" class="form-label">Id Categoría</label>
+          <input id="idCategoria-obj" class="form-control mb-3" name="idCategoria" type="text" class="form-control">
+
+          <label for="idSucursal-obj" class="form-label">Id Sucursal</label>
+          <input id="idSucursal-obj" class="form-control mb-3" name="idSucursal" type="text" class="form-control">
+
+        </form> 
+      </div>
+      <div class="modal-footer">
+        <p id="alert"></p>
+        <button type="button" class="btn btn-success" id="nuevo">Agregar Producto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-success" id="nuevo" data-bs-toggle="modal" data-bs-target="#newModal">Agregar Producto</button>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
  <script type="module" src="/js/mantenedorAdmin.js"></script>
   </body>    
