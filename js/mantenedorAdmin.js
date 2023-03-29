@@ -124,8 +124,23 @@ function rellenarModal(seleccionado){
 
     let idTabla = seleccionado.querySelector('.id').textContent;
     let nombreTabla = seleccionado.querySelector('.nombre').textContent;
+    let precioTabla = seleccionado.querySelector('.precio').textContent;
+    let linkTabla = seleccionado.querySelector('.link').textContent;
+    let stockTabla = seleccionado.querySelector('.stock').textContent;
+    let etiquetaTabla = seleccionado.querySelector('.etiqueta').textContent;
+    let descripcionTabla = seleccionado.querySelector('.descripcion').textContent;
+    let idCategoriaTabla = seleccionado.querySelector('.IdCategoria').textContent;
+    let idSucursalTabla = seleccionado.querySelector('.IdSucursal').textContent;
+
     let inputId = document.getElementById("id-obj").value =idTabla;
     let inputNombre = document.getElementById("nombre-obj").value = nombreTabla;
+    let inputPrecio = document.getElementById("precio-obj").value = precioTabla;
+    let inputLink = document.getElementById("link-obj").value = linkTabla;
+    let inputStock = document.getElementById("stock-obj").value = stockTabla;
+    let inputEtiqueta = document.getElementById("etiqueta-obj").value = etiquetaTabla;
+    let inputDescripcion = document.getElementById("descripcion-obj").value = descripcionTabla;
+    let inputIdCategoria = document.getElementById("idCategoria-obj").value = idCategoriaTabla;
+    let inputIdSucursal = document.getElementById("idSucursal-obj").value = idSucursalTabla;
     
     console.log(idTabla);
 
