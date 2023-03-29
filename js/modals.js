@@ -13,7 +13,7 @@ let inputIdSucursal = document.getElementById("idSucursal-obj");
 const pAlert = document.getElementById("alert");
 const buttonGuardar = document.getElementById("guardar");
 
-function validarModal() {
+export function validarModal() {
         if (!inputId.value){
 /*           pAlert.textContent = 'debes ingresar Id del producto'; */
         alert('debes ingresar Id del producto'); 
@@ -59,5 +59,5 @@ function validarModal() {
         }
 }
 
-buttonGuardar.addEventListener('click', validarModal)
+//buttonGuardar.addEventListener('click', validarModal)
 
