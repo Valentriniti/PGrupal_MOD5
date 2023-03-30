@@ -1,0 +1,15 @@
+.contenedorTabla {
+    padding-top: 2em;
+   
+}
+
+#tableH {
+    background-color: #00ad91; 
+    color: white;
+    text-align: center;
+
+}
+
+th {
+    position: sticky;
+}
