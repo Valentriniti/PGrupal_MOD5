@@ -38,7 +38,7 @@ function Eventos(){
 
     document.addEventListener('DOMContentLoaded', async ()=>{
      
-        cargarDatos();
+        cargarDatos(ProductosCachureando);
 
     });
 
@@ -112,6 +112,12 @@ function Eventos(){
         cargarDatos();
         alert('Registro borrado exitosamente');
     });
+// llamada a la funcion buscar productos
+    btnBuscador.addEventListener('click',()=>{
+
+        buscarProducto();
+
+    })
 
 }
 
@@ -259,6 +265,26 @@ function llenarHtml(arr){
 
 }
 
+function limpiarHtml(padre){
+
+    while(padre.firstChild){
+ 
+     padre.firstChild.remove(padre.firstChild);
+ 
+    }
+ 
+ }
+
+async function cargarDatos(){
+
+    ProductosCachureando = await mantenedor.producto();
+    ProductosCachureando = ProductosCachureando.filter(element =>  element.idSucursal == 6);
+    //llamada funcion LlenarHtml crea los registros en la tabla
+    llenarHtml(ProductosCachureando);
+
+}
+
+
 function buscarProducto(){
     if (inputBuscador.value === ''){
         cargarDatos()
@@ -275,3 +301,4 @@ function buscarProducto(){
             llenarHtml(ProductosCachureando);
     }
 }
+
