@@ -29,6 +29,9 @@ let ProductosCachureando = [];
     const inputIdCategoriaAdd = document.getElementById("idCategoria-add");
     const inputIdSucursalAdd = document.getElementById("idSucursal-add");
     const btnAgregar = document.querySelector('#nuevo');
+    //Variables del modal Eliminar
+    const btnBorrar = document.querySelector('#eliminar');
+    const pIdBorrar = document.getElementById("id-Borrar");
 
 function Eventos(){
 
@@ -38,7 +41,7 @@ function Eventos(){
 
     });
 
-    //Evento selecciona la fila correspondiente que se quiere modificar y rellena el modal con la informacion
+    //Evento selecciona la fila correspondiente que se quiere modificar/borrar y rellena el modal con la informacion
     tBody.addEventListener('click', (e)=>{
         let seleccionado;
 
@@ -48,6 +51,12 @@ function Eventos(){
         
         rellenarModal(seleccionado);
 
+        }
+
+        ///////////Ina//////
+        if(e.target.classList.contains('btn-borrar')){
+            seleccionado = e.target.parentElement.parentElement;
+            rellenarModalBorrar(seleccionado);
         }
     });
     //Envio de informacion para modificar
@@ -91,7 +100,20 @@ function Eventos(){
         }
         
     });
+
+///////////Ina//////
+    //Envío de nformacion para borrar producto
+    btnBorrar.addEventListener('click', async ()=> {
+     
+        let id = pIdBorrar.innerText;
+        await mantenedor.borrarProducto(id);
+
+        cargarDatos();
+        alert('Registro borrado exitosamente');
+    });
+
 }
+
 
 Eventos();
 
@@ -136,6 +158,12 @@ function rellenarModal(seleccionado){
     inputIdCategoria.value = idCategoriaTabla;
     inputIdSucursal.value = idSucursalTabla;
 
+}
+
+///////////Ina//////
+function rellenarModalBorrar(seleccionado){
+    let idTablaBorrar = seleccionado.querySelector('.id').textContent;
+    pIdBorrar.innerText = idTablaBorrar;
 }
 
 function llenarHtml(arr){
