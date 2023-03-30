@@ -18,7 +18,8 @@ let ProductosCachureando = [];
     let inputIdCategoria = document.getElementById("idCategoria-obj");
     let inputIdSucursal = document.getElementById("idSucursal-obj");
     let btnGuardar = document.querySelector('#guardar');
-
+    let btnBuscador = document.querySelector('#boton-buscador');
+    let inputBuscador = document.querySelector('#input-buscador');
 
 function Eventos(){
 
@@ -61,7 +62,7 @@ function Eventos(){
 
     })
 
-
+    btnBuscador.addEventListener('click',buscarProducto);
 }
 
 Eventos();
@@ -284,4 +285,21 @@ async function cargarDatos(){
     //llamada funcion LlenarHtml crea los registros en la tabla
     llenarHtml(ProductosCachureando);
 
+}
+
+function buscarProducto(){
+    if (inputBuscador.value === ''){
+        cargarDatos()
+    }else {
+        const searchTerm = inputBuscador.value.toLowerCase();
+        ProductosCachureando = ProductosCachureando.filter(producto => {
+            const name1 = producto.nombre.toLowerCase();
+            const description1 = producto.descripcion.toLowerCase();
+            const etiquetas1 = producto.etiqueta.toLowerCase();
+        
+            return name1.includes(searchTerm) || description1.includes(searchTerm) || etiquetas1.includes(searchTerm);
+            })
+            limpiarHtml(tBody);
+            llenarHtml(ProductosCachureando);
+    }
 }
