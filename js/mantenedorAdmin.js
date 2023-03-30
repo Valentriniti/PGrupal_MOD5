@@ -207,7 +207,7 @@ function llenarHtml(arr){
         botonMod.setAttribute('type', 'button');
         botonMod.setAttribute('data-bs-toggle', 'modal');
         botonMod.setAttribute('data-bs-target', '#modifyModal');
-        botonMod.textContent = 'Modificar'; //aqui colocar el unicode entre las comillas Modificar
+        botonMod.textContent = ('\u{270E}'); //aqui colocar el unicode entre las comillas Modificar
         botonMod.classList.add('btn-mod','btn', 'btn-primary');
         tdBotonMod.appendChild(botonMod);
         tr.appendChild(tdBotonMod);
@@ -217,7 +217,7 @@ function llenarHtml(arr){
         botonBorr.setAttribute('type', 'button');
         botonBorr.setAttribute('data-bs-toggle', 'modal');
         botonBorr.setAttribute('data-bs-target', '#deleteModal');
-        botonBorr.textContent = 'Borrar';//aqui colocar el unicode entre las comillas Borrar
+        botonBorr.textContent = ('\u{1F5D1}');//aqui colocar el unicode entre las comillas Borrar
         botonBorr.classList.add('btn-borrar','btn', 'btn-danger');
         tdBotonBorr.appendChild(botonBorr);
         tr.appendChild(tdBotonBorr);
