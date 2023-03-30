@@ -18,7 +18,8 @@ let ProductosCachureando = [];
     const inputIdCategoria = document.getElementById("idCategoria-obj");
     const inputIdSucursal = document.getElementById("idSucursal-obj");
     const btnGuardar = document.querySelector('#guardar');
-    //Variables del modal Agregar
+    let btnBuscador = document.querySelector('#boton-buscador');
+    let inputBuscador = document.querySelector('#input-buscador');    //Variables del modal Agregar
     const inputIdAdd = document.getElementById("id-add");
     const inputNombreAdd = document.getElementById("nombre-add");
     const inputPrecioAdd = document.getElementById("precio-add");
@@ -37,7 +38,7 @@ function Eventos(){
 
     document.addEventListener('DOMContentLoaded', async ()=>{
      
-        cargarDatos();
+        cargarDatos(ProductosCachureando);
 
     });
 
@@ -111,6 +112,12 @@ function Eventos(){
         cargarDatos();
         alert('Registro borrado exitosamente');
     });
+// llamada a la funcion buscar productos
+    btnBuscador.addEventListener('click',()=>{
+
+        buscarProducto();
+
+    })
 
 }
 
@@ -172,7 +179,6 @@ function llenarHtml(arr){
     limpiarHtml(tBody);
 
     arr.forEach(element => {
-
      //Creación de una fila (tr)
      let tr = document.createElement('tr');
      //Creación de una celda de datos (td) para el id
@@ -256,17 +262,18 @@ function llenarHtml(arr){
      //Agregar la fila completa a la tabla (tbody)
      tBody.appendChild(tr);
     });
+
 }
 
 function limpiarHtml(padre){
 
-   while(padre.firstChild){
-
-    padre.firstChild.remove(padre.firstChild);
-
-   }
-
-}
+    while(padre.firstChild){
+ 
+     padre.firstChild.remove(padre.firstChild);
+ 
+    }
+ 
+ }
 
 async function cargarDatos(){
 
@@ -276,3 +283,22 @@ async function cargarDatos(){
     llenarHtml(ProductosCachureando);
 
 }
+
+
+function buscarProducto(){
+    if (inputBuscador.value === ''){
+        cargarDatos()
+    }else {
+        const searchTerm = inputBuscador.value.toLowerCase();
+        ProductosCachureando = ProductosCachureando.filter(producto => {
+            const name1 = producto.nombre.toLowerCase();
+            const description1 = producto.descripcion.toLowerCase();
+            const etiquetas1 = producto.etiqueta.toLowerCase();
+        
+            return name1.includes(searchTerm) || description1.includes(searchTerm) || etiquetas1.includes(searchTerm);
+            })
+            limpiarHtml(tBody);
+            llenarHtml(ProductosCachureando);
+    }
+}
+
