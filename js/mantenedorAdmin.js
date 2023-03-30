@@ -245,7 +245,7 @@ function llenarHtml(arr){
         botonBorr.setAttribute('type', 'button');
         botonBorr.setAttribute('data-bs-toggle', 'modal');
         botonBorr.setAttribute('data-bs-target', '#deleteModal');
-        botonBorr.textContent =  ('\u{1F5D1}');//aqui colocar el unicode entre las comillas Borrar
+        botonBorr.textContent = ('\u{1F5D1}');//aqui colocar el unicode entre las comillas Borrar
         botonBorr.classList.add('btn-borrar','btn', 'btn-danger');
         tdBotonBorr.appendChild(botonBorr);
         tr.appendChild(tdBotonBorr);
