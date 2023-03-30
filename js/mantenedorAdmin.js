@@ -119,6 +119,7 @@ function Eventos(){
 Eventos();
 
 /*
+hay que borrar esto
 
 //Eventos
 function Eventos(){
