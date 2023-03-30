@@ -172,7 +172,6 @@ function llenarHtml(arr){
     limpiarHtml(tBody);
 
     arr.forEach(element => {
-
      //Creación de una fila (tr)
      let tr = document.createElement('tr');
      //Creación de una celda de datos (td) para el id
@@ -256,24 +255,6 @@ function llenarHtml(arr){
      //Agregar la fila completa a la tabla (tbody)
      tBody.appendChild(tr);
     });
-}
-
-function limpiarHtml(padre){
-
-   while(padre.firstChild){
-
-    padre.firstChild.remove(padre.firstChild);
-
-   }
-
-}
-
-async function cargarDatos(){
-
-    ProductosCachureando = await mantenedor.producto();
-    ProductosCachureando = ProductosCachureando.filter(element =>  element.idSucursal == 6);
-    //llamada funcion LlenarHtml crea los registros en la tabla
-    llenarHtml(ProductosCachureando);
 
 }
 
