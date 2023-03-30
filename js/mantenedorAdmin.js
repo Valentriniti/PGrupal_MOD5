@@ -284,30 +284,21 @@ async function cargarDatos(){
 
 }
 
-
 function buscarProducto(){
    
     let newProductos= []
 
     if (inputBuscador.value === ''){
-
         cargarDatos();
-
-    }else {
-
-        const searchTerm = inputBuscador.value.toLowerCase();
+    } else {
+        const searchTerm = inputBuscador.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
         newProductos = ProductosCachureando.filter(producto => {
-            const name1 = producto.nombre.toLowerCase();
-            const description1 = producto.descripcion.toLowerCase();
-            const etiquetas1 = producto.etiqueta.toLowerCase();
-        
+            const name1 = producto.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            const description1 = producto.descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            const etiquetas1 = producto.etiqueta.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
             return name1.includes(searchTerm) || description1.includes(searchTerm) || etiquetas1.includes(searchTerm);
-            })
-            
-            limpiarHtml(tBody);
-            llenarHtml(newProductos);
+        });
+        limpiarHtml(tBody);
+        llenarHtml(newProductos);
     }
-
- 
 }
-
