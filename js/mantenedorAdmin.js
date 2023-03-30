@@ -286,19 +286,28 @@ async function cargarDatos(){
 
 
 function buscarProducto(){
+   
+    let newProductos= []
+
     if (inputBuscador.value === ''){
-        cargarDatos()
+
+        cargarDatos();
+
     }else {
+
         const searchTerm = inputBuscador.value.toLowerCase();
-        ProductosCachureando = ProductosCachureando.filter(producto => {
+        newProductos = ProductosCachureando.filter(producto => {
             const name1 = producto.nombre.toLowerCase();
             const description1 = producto.descripcion.toLowerCase();
             const etiquetas1 = producto.etiqueta.toLowerCase();
         
             return name1.includes(searchTerm) || description1.includes(searchTerm) || etiquetas1.includes(searchTerm);
             })
+            
             limpiarHtml(tBody);
-            llenarHtml(ProductosCachureando);
+            llenarHtml(newProductos);
     }
+
+ 
 }
 
