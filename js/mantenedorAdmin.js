@@ -18,8 +18,8 @@ let ProductosCachureando = [];
     const inputIdCategoria = document.getElementById("idCategoria-obj");
     const inputIdSucursal = document.getElementById("idSucursal-obj");
     const btnGuardar = document.querySelector('#guardar');
-    let btnBuscador = document.querySelector('#boton-buscador');
-    let inputBuscador = document.querySelector('#input-buscador');    //Variables del modal Agregar
+    const btnBuscador = document.querySelector('#boton-buscador');
+    const inputBuscador = document.querySelector('#input-buscador');    //Variables del modal Agregar
     const inputIdAdd = document.getElementById("id-add");
     const inputNombreAdd = document.getElementById("nombre-add");
     const inputPrecioAdd = document.getElementById("precio-add");
@@ -33,6 +33,7 @@ let ProductosCachureando = [];
     //Variables del modal Eliminar
     const btnBorrar = document.querySelector('#eliminar');
     const pIdBorrar = document.getElementById("id-Borrar");
+
 
 function Eventos(){
 
@@ -54,7 +55,7 @@ function Eventos(){
 
         }
 
-        ///////////Ina//////
+      
         if(e.target.classList.contains('btn-borrar')){
             seleccionado = e.target.parentElement.parentElement;
             rellenarModalBorrar(seleccionado);
@@ -102,7 +103,7 @@ function Eventos(){
         
     });
 
-///////////Ina//////
+
     //Envío de nformacion para borrar producto
     btnBorrar.addEventListener('click', async ()=> {
      
@@ -117,28 +118,19 @@ function Eventos(){
 
         buscarProducto();
 
+    });
+
+    inputBuscador.addEventListener('keyup', (e)=> {
+        if(e.key === 'Enter'){
+            buscarProducto();
+        }
     })
+
 
 }
 
 
 Eventos();
-
-/*
-hay que borrar esto
-
-//Eventos
-function Eventos(){
-
-    btnBorrar.addEventListener('click', ()=>{
-
-        let id = inputBorrar.value
-        mantenedor1.borrarProducto(id);
-
-    });
-
-}
-*/
 
 
 //Funciones
@@ -168,7 +160,6 @@ function rellenarModal(seleccionado){
 
 }
 
-///////////Ina//////
 function rellenarModalBorrar(seleccionado){
     let idTablaBorrar = seleccionado.querySelector('.id').textContent;
     pIdBorrar.innerText = idTablaBorrar;
