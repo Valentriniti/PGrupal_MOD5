@@ -18,7 +18,8 @@ let ProductosCachureando = [];
     const inputIdCategoria = document.getElementById("idCategoria-obj");
     const inputIdSucursal = document.getElementById("idSucursal-obj");
     const btnGuardar = document.querySelector('#guardar');
-    //Variables del modal Agregar
+    let btnBuscador = document.querySelector('#boton-buscador');
+    let inputBuscador = document.querySelector('#input-buscador');    //Variables del modal Agregar
     const inputIdAdd = document.getElementById("id-add");
     const inputNombreAdd = document.getElementById("nombre-add");
     const inputPrecioAdd = document.getElementById("precio-add");
@@ -29,16 +30,19 @@ let ProductosCachureando = [];
     const inputIdCategoriaAdd = document.getElementById("idCategoria-add");
     const inputIdSucursalAdd = document.getElementById("idSucursal-add");
     const btnAgregar = document.querySelector('#nuevo');
+    //Variables del modal Eliminar
+    const btnBorrar = document.querySelector('#eliminar');
+    const pIdBorrar = document.getElementById("id-Borrar");
 
 function Eventos(){
 
     document.addEventListener('DOMContentLoaded', async ()=>{
      
-        cargarDatos();
+        cargarDatos(ProductosCachureando);
 
     });
 
-    //Evento selecciona la fila correspondiente que se quiere modificar y rellena el modal con la informacion
+    //Evento selecciona la fila correspondiente que se quiere modificar/borrar y rellena el modal con la informacion
     tBody.addEventListener('click', (e)=>{
         let seleccionado;
 
@@ -48,6 +52,12 @@ function Eventos(){
         
         rellenarModal(seleccionado);
 
+        }
+
+        ///////////Ina//////
+        if(e.target.classList.contains('btn-borrar')){
+            seleccionado = e.target.parentElement.parentElement;
+            rellenarModalBorrar(seleccionado);
         }
     });
     //Envio de informacion para modificar
@@ -91,11 +101,31 @@ function Eventos(){
         }
         
     });
+
+///////////Ina//////
+    //Envío de nformacion para borrar producto
+    btnBorrar.addEventListener('click', async ()=> {
+     
+        let id = pIdBorrar.innerText;
+        await mantenedor.borrarProducto(id);
+
+        cargarDatos();
+        alert('Registro borrado exitosamente');
+    });
+// llamada a la funcion buscar productos
+    btnBuscador.addEventListener('click',()=>{
+
+        buscarProducto();
+
+    })
+
 }
+
 
 Eventos();
 
 /*
+hay que borrar esto
 
 //Eventos
 function Eventos(){
@@ -138,12 +168,17 @@ function rellenarModal(seleccionado){
 
 }
 
+///////////Ina//////
+function rellenarModalBorrar(seleccionado){
+    let idTablaBorrar = seleccionado.querySelector('.id').textContent;
+    pIdBorrar.innerText = idTablaBorrar;
+}
+
 function llenarHtml(arr){
     
     limpiarHtml(tBody);
 
     arr.forEach(element => {
-
      //Creación de una fila (tr)
      let tr = document.createElement('tr');
      //Creación de una celda de datos (td) para el id
@@ -207,8 +242,8 @@ function llenarHtml(arr){
         botonMod.setAttribute('type', 'button');
         botonMod.setAttribute('data-bs-toggle', 'modal');
         botonMod.setAttribute('data-bs-target', '#modifyModal');
-        botonMod.textContent = ('\u{270E}'); //aqui colocar el unicode entre las comillas Modificar
-        botonMod.classList.add('btn-mod','btn', 'btn-primary');
+        botonMod.textContent = ('\u{270F}'); //aqui colocar el unicode entre las comillas Modificar
+        botonMod.classList.add('btn-mod','btn');
         tdBotonMod.appendChild(botonMod);
         tr.appendChild(tdBotonMod);
         //boton Eliminar
@@ -217,27 +252,26 @@ function llenarHtml(arr){
         botonBorr.setAttribute('type', 'button');
         botonBorr.setAttribute('data-bs-toggle', 'modal');
         botonBorr.setAttribute('data-bs-target', '#deleteModal');
-        botonBorr.textContent =  ('\u{1F5D1}');//aqui colocar el unicode entre las comillas Borrar
-        botonBorr.classList.add('btn-borrar','btn', 'btn-danger');
+        botonBorr.textContent = ('\u{1F5D1}');//aqui colocar el unicode entre las comillas Borrar
+        botonBorr.classList.add('btn-borrar','btn');
         tdBotonBorr.appendChild(botonBorr);
         tr.appendChild(tdBotonBorr);
-
-
 
      //Agregar la fila completa a la tabla (tbody)
      tBody.appendChild(tr);
     });
+
 }
 
 function limpiarHtml(padre){
 
-   while(padre.firstChild){
-
-    padre.firstChild.remove(padre.firstChild);
-
-   }
-
-}
+    while(padre.firstChild){
+ 
+     padre.firstChild.remove(padre.firstChild);
+ 
+    }
+ 
+ }
 
 async function cargarDatos(){
 
@@ -246,4 +280,23 @@ async function cargarDatos(){
     //llamada funcion LlenarHtml crea los registros en la tabla
     llenarHtml(ProductosCachureando);
 
+}
+
+function buscarProducto(){
+   
+    let newProductos= []
+
+    if (inputBuscador.value === ''){
+        cargarDatos();
+    } else {
+        const searchTerm = inputBuscador.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        newProductos = ProductosCachureando.filter(producto => {
+            const name1 = producto.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            const description1 = producto.descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            const etiquetas1 = producto.etiqueta.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            return name1.includes(searchTerm) || description1.includes(searchTerm) || etiquetas1.includes(searchTerm);
+        });
+        limpiarHtml(tBody);
+        llenarHtml(newProductos);
+    }
 }
