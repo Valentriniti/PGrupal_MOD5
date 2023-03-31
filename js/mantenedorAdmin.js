@@ -257,8 +257,6 @@ function llenarHtml(arr){
         tdBotonBorr.appendChild(botonBorr);
         tr.appendChild(tdBotonBorr);
 
-
-
      //Agregar la fila completa a la tabla (tbody)
      tBody.appendChild(tr);
     });
