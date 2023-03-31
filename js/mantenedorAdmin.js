@@ -242,8 +242,8 @@ function llenarHtml(arr){
         botonMod.setAttribute('type', 'button');
         botonMod.setAttribute('data-bs-toggle', 'modal');
         botonMod.setAttribute('data-bs-target', '#modifyModal');
-        botonMod.textContent = ('\u{270E}'); //aqui colocar el unicode entre las comillas Modificar
-        botonMod.classList.add('btn-mod','btn', 'btn-primary');
+        botonMod.textContent = ('\u{270F}'); //aqui colocar el unicode entre las comillas Modificar
+        botonMod.classList.add('btn-mod','btn');
         tdBotonMod.appendChild(botonMod);
         tr.appendChild(tdBotonMod);
         //boton Eliminar
@@ -253,7 +253,7 @@ function llenarHtml(arr){
         botonBorr.setAttribute('data-bs-toggle', 'modal');
         botonBorr.setAttribute('data-bs-target', '#deleteModal');
         botonBorr.textContent = ('\u{1F5D1}');//aqui colocar el unicode entre las comillas Borrar
-        botonBorr.classList.add('btn-borrar','btn', 'btn-danger');
+        botonBorr.classList.add('btn-borrar','btn');
         tdBotonBorr.appendChild(botonBorr);
         tr.appendChild(tdBotonBorr);
 
@@ -284,30 +284,21 @@ async function cargarDatos(){
 
 }
 
-
 function buscarProducto(){
    
     let newProductos= []
 
     if (inputBuscador.value === ''){
-
         cargarDatos();
-
-    }else {
-
-        const searchTerm = inputBuscador.value.toLowerCase();
+    } else {
+        const searchTerm = inputBuscador.value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
         newProductos = ProductosCachureando.filter(producto => {
-            const name1 = producto.nombre.toLowerCase();
-            const description1 = producto.descripcion.toLowerCase();
-            const etiquetas1 = producto.etiqueta.toLowerCase();
-        
+            const name1 = producto.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            const description1 = producto.descripcion.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            const etiquetas1 = producto.etiqueta.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
             return name1.includes(searchTerm) || description1.includes(searchTerm) || etiquetas1.includes(searchTerm);
-            })
-            
-            limpiarHtml(tBody);
-            llenarHtml(newProductos);
+        });
+        limpiarHtml(tBody);
+        llenarHtml(newProductos);
     }
-
- 
 }
-

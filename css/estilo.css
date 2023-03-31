@@ -1,15 +1,83 @@
 .contenedorTabla {
     padding-top: 2em;
-   
+    
 }
 
 #tableH {
     background-color: #00ad91; 
     color: white;
     text-align: center;
+    position: sticky;
+    top: 0px;
+}
+
+/* table th:nth-child(11), 
+table td:nth-child(11){
+    position: sticky;
+    left: 0;
+}
+
+table th:nth-child(10), 
+table td:nth-child(10){
+    position: sticky;
+    left: 0;
+}
+
+table td:nth-child(10), 
+table td:nth-child(11){
+     background: white;
+     z-index: 11;
+} */
+
+.table-wrapper {
+    max-height: 400px;
+    overflow-y:scroll;
+}
+
+
+#contenedorBuscador {
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+
+#boton-buscador {
+    background-color: gray;
+    color: white;
+    padding: 10px 20px;
+}
+
+#input-buscador {
+    padding: 10px; 
+    border: 2px solid #ccc;
+    border-radius: 4px; 
+    font-size: 16px; 
+    flex-grow: 1;
+}
+
+#new {
+    background-color: #00ad91;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+}
+
+td, th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+footer{
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    background-color: lightgrey;
+    height: 100px;
+    position: sticky;
+
 
 }
 
-th {
-    position: sticky;
+.list-group-item{
+    background: none;
+    border: none;
 }
