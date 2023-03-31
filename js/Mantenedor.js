@@ -20,7 +20,6 @@ export class Mantenedor {
     }
 
     //Metodo agregar productos
-    
     async agregarProducto(obj){
         
         const{id,nombre,precio,link,stock,etiqueta,descripcion,idCategoria,idSucursal} = obj;
