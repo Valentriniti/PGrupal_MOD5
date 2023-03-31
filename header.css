@@ -1,0 +1,19 @@
+.header__element{
+    
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+
+    }
+
+.header__title{
+
+    color: #04b89a;
+    margin-left: 3rem;
+    
+    
+}
