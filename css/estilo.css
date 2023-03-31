@@ -54,7 +54,7 @@ footer{
     position: sticky;
 }
 
-.list-group-item{
+.list-group .list-group-item{
     background: none;
     border: none;
 }
